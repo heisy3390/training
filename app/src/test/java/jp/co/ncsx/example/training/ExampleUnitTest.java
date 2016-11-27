@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 
 public class ExampleUnitTest {
     @Test
-    public void sortArrays() throws Exception {
+    public void sortNumbers() throws Exception {
         Integer[] input = {4, 5, 7, 2, 3, 1, 9};
 
         List<Integer> temp = Arrays.asList(input);
