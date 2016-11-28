@@ -5,12 +5,21 @@ import android.support.annotation.RequiresApi;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.Hashtable;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * ソートを行う処理を作成する問題の解答例です。
+ */
 @SuppressWarnings("Since15")
 public class SortUnitTest {
 
@@ -99,6 +108,78 @@ public class SortUnitTest {
         public int compareTo(AnyObject o) {
             return this.key.compareTo(o.key);
         }
+    }
+
+    /**
+     * 「問題4：Mapをkeyの昇順でソートする」の解答例
+     *
+     * @throws Exception
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Test
+    public void sortMapAscendingOrder() throws Exception {
+        Map<String, String> actual = new TreeMap<>();
+        actual.put("5", "CCC");
+        actual.put("2", "cccc");
+        actual.put("10", "b3457");
+        actual.put("34", "0000000");
+        actual.put("0", "()()");
+        actual.put("-9", "AAAA");
+        actual.put("100", "BBBB");
+
+        assertEquals("[AAAA, ()(), b3457, BBBB, cccc, 0000000, CCC]", actual.values().toString());
+    }
+
+    /**
+     * 「問題5：Mapをkeyの降順でソートする」の解答例
+     *
+     * @throws Exception
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Test
+    public void sortMapDescendingOrder() throws Exception {
+        Map<String, String> actual = new Hashtable<>();
+        actual.put("5", "CCC");
+        actual.put("2", "cccc");
+        actual.put("10", "b3457");
+        actual.put("34", "0000000");
+        actual.put("0", "()()");
+        actual.put("-9", "AAAA");
+        actual.put("100", "BBBB");
+
+        assertEquals("[CCC, cccc, BBBB, 0000000, b3457, ()(), AAAA]", actual.values().toString());
+    }
+
+    /**
+     * 「問題6：Mapを特定のルールでソートする」の解答例
+     *
+     * @throws Exception
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Test
+    public void sortMapSpecialOrder() throws Exception {
+        Map<String, String> input = new LinkedHashMap<>();
+        input.put("5", "CCC");
+        input.put("2", "cccc");
+        input.put("10", "b3457");
+        input.put("34", "0000000");
+        input.put("0", "()()()()");
+        input.put("-9", "AAAAAA");
+        input.put("100", "BBBBBBBBBBBB");
+
+        List<Map.Entry> list = new ArrayList<Map.Entry>(input.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry>() {
+            @Override
+            public int compare(Map.Entry t0, Map.Entry t1) {
+                return ((String) t0.getValue()).length() - ((String) t1.getValue()).length();
+            }
+        });
+        Map<String, String> actual = new LinkedHashMap<>();
+        for (Map.Entry<String, String> entry : list) {
+            actual.put(entry.getKey(), entry.getValue());
+        }
+
+        assertEquals("[CCC, cccc, b3457, AAAAAA, 0000000, ()()()(), BBBBBBBBBBBB]", actual.values().toString());
     }
 
 }
