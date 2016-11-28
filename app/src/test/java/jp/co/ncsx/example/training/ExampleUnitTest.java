@@ -1,18 +1,17 @@
 package jp.co.ncsx.example.training;
 
-import android.annotation.SuppressLint;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+@SuppressWarnings("Since15")
 public class ExampleUnitTest {
 
     /**
@@ -20,6 +19,7 @@ public class ExampleUnitTest {
      *
      * @throws Exception
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Test
     public void sortNumbersAscendingOrder() throws Exception {
         Integer[] input = {4, 5, 7, 2, 3, 1, 9};
@@ -41,6 +41,7 @@ public class ExampleUnitTest {
      *
      * @throws Exception
      */
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Test
     public void sortNumbersDescendingOrder() throws Exception {
         Integer[] input = {4, 5, 7, 2, 3, 1, 9};
