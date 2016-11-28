@@ -12,7 +12,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings("Since15")
-public class ExampleUnitTest {
+public class SortUnitTest {
 
     /**
      * 「問題：数値の配列を昇順でソートする」の解答例
