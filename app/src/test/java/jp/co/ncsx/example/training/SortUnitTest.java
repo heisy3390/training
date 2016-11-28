@@ -67,6 +67,32 @@ public class SortUnitTest {
         assertEquals(new Integer(1), temp.get(temp.size() - 1));
     }
 
+
+    /**
+     * 「問題2.5（おまけ）：文字列のリストを配列へ変換する」の解答例
+     *
+     * @throws Exception
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Test
+    public void convertListToArray() throws Exception {
+        List<String> list = new ArrayList<>();
+        list.add("4");
+        list.add("5");
+        list.add("7");
+        list.add("2");
+        list.add("3");
+        list.add("1");
+        list.add("9");
+        list.add("21");
+
+        String[] actual = (String[]) list.toArray(new String[list.size()]);
+
+        assertEquals(list.size(), actual.length);
+        assertEquals("4", actual[0]);
+        assertEquals("21", actual[actual.length - 1]);
+    }
+
     /**
      * 「問題3：AnyObjectの配列をAnyObject.keyの（辞書的な）昇順でソートする」の解答例
      *
